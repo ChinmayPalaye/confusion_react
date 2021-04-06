@@ -12,7 +12,7 @@ import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
      );
  }
 
-function Menu(props)        {
+function Menu(props) {
     const menu = props.dishes.map((dish=>{
         return (
             <div key={dish.id} className="col-12 col-md-5 m-1">
@@ -22,9 +22,12 @@ function Menu(props)        {
     }));
 
     return (
-        <div className="row">
+        <div className="container">
+            <div className="row">
                 {menu}
+            </div>
         </div>
+        
     );
 }
 
