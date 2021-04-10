@@ -5,6 +5,7 @@ import {Control, LocalForm, Errors} from 'react-redux-form';
 import {Link} from 'react-router-dom';
 import Loading from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const required = value=> value && value.length;
 const maxLength = (length)=> (value)=> !value || (value.length <= length);
@@ -14,15 +15,19 @@ const minLength = (length)=> (value)=> value && (value.length >= length);
 function RenderComments({comments, postComment, dishId}){
     const coms = comments.map(cmt=>{
         return (
+            <Fade in>
             <blockquote key={cmt.id}>
                 {cmt.comment}
                 <footer>--{cmt.author}, {new Date(cmt.date).toDateString().substring(4)}</footer>
             </blockquote>
+            </Fade>
         );
     });
     return (
         <>
+        <Stagger in>
         {coms}
+        </Stagger>
         <CommentForm postComment={postComment} dishId={dishId}/>
         </>
     );
@@ -30,6 +35,11 @@ function RenderComments({comments, postComment, dishId}){
 
 function RenderDish({dish}){
     return (
+        <FadeTransform
+            in
+            transformProps={{
+                exitTransform: 'scale(0.5) translateY(-50%)'
+            }}>
         <Card>
             <CardImg src={baseUrl+dish.image} alt={dish.name}/>
             <CardBody>
@@ -37,6 +47,7 @@ function RenderDish({dish}){
                 <CardText>{dish.description}</CardText>
             </CardBody>
         </Card>
+        </FadeTransform>
     );
 }
 
