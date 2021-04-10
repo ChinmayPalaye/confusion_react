@@ -4,6 +4,7 @@ import {Modal, ModalHeader, ModalBody, Label, Col, Row} from 'reactstrap';
 import {Control, LocalForm, Errors} from 'react-redux-form';
 import {Link} from 'react-router-dom';
 import Loading from './LoadingComponent';
+import {baseUrl} from '../shared/baseUrl';
 
 const required = value=> value && value.length;
 const maxLength = (length)=> (value)=> !value || (value.length <= length);
@@ -30,7 +31,7 @@ function RenderComments({comments, addComment, dishId}){
 function RenderDish({dish}){
     return (
         <Card>
-            <CardImg src={dish.image} alt={dish.name}/>
+            <CardImg src={baseUrl+dish.image} alt={dish.name}/>
             <CardBody>
                 <CardTitle>{dish.name}</CardTitle>
                 <CardText>{dish.description}</CardText>
