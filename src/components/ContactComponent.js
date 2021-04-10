@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Breadcrumb,BreadcrumbItem, Button, Label, Col, Row} from 'reactstrap';
-import {Control, Form, Errors, actions} from 'react-redux-form';
+import {Control, Form, Errors} from 'react-redux-form';
 import {Link} from 'react-router-dom';
 
 const required = value=> value && value.length;
@@ -16,8 +16,8 @@ class Contact extends Component {
     }
 
     handleSubmit(values){
-        console.log("Current state: "+values);
-        alert(JSON.stringify(values));
+        // alert(JSON.stringify(values));
+        this.props.postFeedback(values.firstName,values.lastName,values.telnum,values.email,values.agree,values.contactType,values.message);
         this.props.resetFeedbackForm();
     }
     
